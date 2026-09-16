@@ -1,0 +1,17 @@
+{
+	"productName": "Gale Praetoris Test",
+	"identifier": "com.praetoris.galetest",
+	"bundle": {
+		"createUpdaterArtifacts": false
+	},
+	"plugins": {
+		"deep-link": {
+			"desktop": {
+				"schemes": ["gale-praetoris-test"]
+			}
+		},
+		"updater": {
+			"endpoints": []
+		}
+	}
+}
