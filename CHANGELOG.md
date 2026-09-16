@@ -5,6 +5,7 @@
 ### Added
 
 - Azerbaijani translation (thanks [@Jamal](https://github.com/jamalkamaladdin))
+- Option to keep additional mods and config files when importing or updating synced profiles
 
 ### Changed
 
