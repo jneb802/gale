@@ -7,7 +7,7 @@
 	"plugins": {
 		"deep-link": {
 			"desktop": {
-				"schemes": ["gale-praetoris-test"]
+				"schemes": ["gale"]
 			}
 		},
 		"updater": {
