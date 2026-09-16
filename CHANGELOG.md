@@ -5,7 +5,7 @@
 ### Added
 
 - Azerbaijani translation (thanks [@Jamal](https://github.com/jamalkamaladdin))
-- Option to keep additional mods and config files when importing or updating synced profiles
+- Option to manage local mods and keep additional mods and config files when updating synced profiles
 
 ### Changed
 
