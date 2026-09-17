@@ -1,6 +1,9 @@
 use std::path::PathBuf;
 
-pub const APP_GUID: &str = "com.kesomannen.gale";
+pub const APP_GUID: &str = match option_env!("GALE_APP_GUID") {
+    Some(value) => value,
+    None => "com.kesomannen.gale",
+};
 
 pub fn default_app_config_dir() -> PathBuf {
     app_dir("config", dirs_next::config_dir())
