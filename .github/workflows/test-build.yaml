@@ -36,6 +36,40 @@ jobs:
 
       - name: Build unsigned test MSI
         run: pnpm tauri build --bundles msi --config src-tauri/tauri.test.conf.json
+        env:
+          GALE_APP_GUID: com.praetoris.galetest
+
+      - name: Verify test application starts
+        shell: pwsh
+        run: |
+          $exe = Resolve-Path "src-tauri/target/release/gale.exe"
+          $process = Start-Process $exe -PassThru
+
+          try {
+            Start-Sleep -Seconds 15
+            $process.Refresh()
+
+            if ($process.HasExited) {
+              throw "Gale exited during startup with code $($process.ExitCode)."
+            }
+
+            if (-not $process.Responding) {
+              throw "Gale did not respond after startup."
+            }
+
+            $log = Join-Path $env:APPDATA "com.praetoris.galetest/latest.log"
+            if (-not (Test-Path $log)) {
+              throw "Gale did not create its isolated test log at $log."
+            }
+
+            Get-Content $log
+            if (-not (Select-String -Path $log -SimpleMatch "setup done" -Quiet)) {
+              throw "Gale did not finish backend setup."
+            }
+          }
+          finally {
+            Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue
+          }
 
       - name: Upload test MSI
         uses: actions/upload-artifact@v4
